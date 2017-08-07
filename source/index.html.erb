@@ -24,21 +24,18 @@ title: Le Wagon - Middleman
 </div>
 
 <div class="container" id="home-flats">
+  <h2 class="text-center">Recent flats</h2>
   <div class="row">
-    <% ['berlin', 'bordeaux', 'paris'].each do |city| %>
+    <% data.flats.each do |owner, flat| %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/<%= city %>');">
-          <div class="card-category"><%= city %></div>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/<%= flat.city_slug %>');">
+          <div class="card-category"><%= flat.city_name %></div>
           <div class="card-description">
-              <h2><%= data.users[1]['name'] %></h2>
-              <p>Very cool stuff, useful and smart</p>
+              <h2><%= flat.name %></h2>
+              <p><%= flat.description %></p>
           </div>
-          <% username = nil %>
-          <% data.users.each do |user| %>
-            <% username = user['github_nickname'] %>
-            <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/<%= username %>">
-            <a class="card-link" href="#" ></a>
-          <% end %>
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/#{owner}", class:"card-user" %>
+          <%= link_to "", "flats/#{owner}.html", class: "card-link" %>
         </div>
       </div>
     <% end %>
